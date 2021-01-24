@@ -11,6 +11,8 @@ RUN yum install -y wget openssl sed &&\
     yum clean all &&\
     wget http://nginx.org/packages/$os/$osversion/x86_64/RPMS/nginx-$nginxversion.el$elversion.ngx.x86_64.rpm &&\
     rpm -iv nginx-$nginxversion.el$elversion.ngx.x86_64.rpm
+    chown -R www-data:www-data /var/log/nginx
+    chmod -R 755 /var/log/nginx
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /data/www/index.html
